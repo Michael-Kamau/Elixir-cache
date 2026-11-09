@@ -1,13 +1,23 @@
 defmodule ElixirCache.Cache.Ets do
+
+  use GenServer
   @table :global_cache
 
-  def start do
+  def start_link(_opts) do
+    IO.inspect("The cache server has been started")
+    GenServer.start_link(__MODULE__, %{}, name: __MODULE__)
+  end
+
+  @impl true
+  def init(state) do
     :ets.new(@table, [
       :named_table,
       :public,
       :set,
       read_concurrency: true
     ])
+
+    {:ok, state}
   end
 
  def put(key, value) do
