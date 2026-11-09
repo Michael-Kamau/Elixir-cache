@@ -1,7 +1,7 @@
 defmodule ElixirCache.Cache.Ets do
 
   use GenServer
-  @table :global_cache
+  @table :ets_cache
 
   def start_link(_opts) do
     IO.inspect("The cache server has been started")

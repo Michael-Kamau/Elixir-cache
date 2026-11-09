@@ -4,7 +4,8 @@ defmodule ElixirCache.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      ElixirCache.Cache.Ets
+      ElixirCache.Cache.Ets,
+      ElixirCache.Cache.Dets
     ]
 
     Supervisor.start_link(children,
